@@ -27,8 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:scaleType="center"
-                app:srcCompat="@drawable/argentina_flag" />
+                app:srcCompat="@drawable/indonesia_flag" />
 
             <LinearLayout
                 android:layout_width="match_parent"
