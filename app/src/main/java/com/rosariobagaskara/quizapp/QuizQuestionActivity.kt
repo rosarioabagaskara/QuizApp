@@ -1,20 +1,19 @@
 package com.rosariobagaskara.quizapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 
 class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     private var currentPosition = 1
+    private var correctAnswer = 10
+    private var inputName: String = ""
     private var questionList : ArrayList<Question>? = null
-    private var selectedOptions: Int? = null
-
+    private var selectedOptions: Int = 0
     private var questionTextview: TextView? = null
     private var flagImage: ImageView? = null
     private var progressBar: ProgressBar? = null
@@ -35,16 +34,18 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         option2 = findViewById(R.id.option2)
         option3 = findViewById(R.id.option3)
         option4 = findViewById(R.id.option4)
-        buttonSubmit = findViewById(R.id.button)
+        buttonSubmit = findViewById(R.id.button_sbm)
         option1?.setOnClickListener(this)
         option2?.setOnClickListener(this)
         option3?.setOnClickListener(this)
         option4?.setOnClickListener(this)
+        buttonSubmit?.setOnClickListener(this)
         questionList = Constants.getQuestion()
         getQuestion()
     }
 
     private fun getQuestion() {
+        defaultOptions()
         var question = questionList!![currentPosition - 1]
         progressBar?.progress = currentPosition
         progressTextview?.text = "$currentPosition/${progressBar?.max}"
@@ -54,9 +55,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         option3?.text = question.option3
         option4?.text = question.option4
         flagImage?.setImageResource(question.image)
-        if (progressBar?.progress == progressBar?.max){
-            buttonSubmit?.text = "Finish"
-        }
+        buttonSubmit?.text = "Submit"
     }
 
     fun defaultOptions(){
@@ -95,23 +94,87 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
         when(view?.id){
             R.id.option1 -> {
                 option1?.let {
-                    selectedOption(it, 0)
+                    selectedOption(it, 1)
                 }
             }
             R.id.option2 -> {
                 option2?.let {
-                    selectedOption(it, 1)
+                    selectedOption(it, 2)
                 }
             }
             R.id.option3 -> {
                 option3?.let {
-                    selectedOption(it, 2)
+                    selectedOption(it, 3)
                 }
             }
             R.id.option4 -> {
                 option4?.let {
-                    selectedOption(it, 3)
+                    selectedOption(it, 4)
                 }
+            }
+
+            R.id.button_sbm ->{
+                if(selectedOptions == 0 && buttonSubmit?.text == "Go to next question" || buttonSubmit?.text == "Finish"){
+                    currentPosition++
+                    when{
+                        currentPosition <= questionList!!.size ->{
+                            getQuestion()
+                        }
+                        else -> {
+                            Toast.makeText(this, "You have completed the quiz!", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, ResultActivity::class.java)
+                            val valueIntent = getIntent()
+                            inputName = valueIntent.getStringExtra("inputName").toString()
+                            intent.putExtra("correctAnswer", correctAnswer.toString())
+                            intent.putExtra("inputName", inputName)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                }else{
+                    val question = questionList?.get(currentPosition - 1)
+                    if(question!!.correctAnswer != selectedOptions){
+                        answerView(selectedOptions, R.drawable.false_text_background)
+                        correctAnswer--
+                    }
+                    answerView(question.correctAnswer, R.drawable.correct_text_background)
+
+                    if(currentPosition == questionList?.size){
+                        buttonSubmit?.text = "Finish"
+                    }else{
+                        buttonSubmit?.text = "Go to next question"
+                    }
+                    selectedOptions = 0
+                }
+            }
+        }
+    }
+
+    private fun answerView(answer: Int, drawableView: Int){
+        when(answer){
+            1 -> {
+                option1?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+            2 -> {
+                option2?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+            3 -> {
+                option3?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+            4 -> {
+                option4?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
             }
         }
     }

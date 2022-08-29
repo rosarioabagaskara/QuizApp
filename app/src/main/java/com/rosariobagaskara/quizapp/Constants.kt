@@ -12,7 +12,7 @@ object Constants {
             "Malaysia",
             "Singapore",
             "Thailand",
-            0
+            1
         )
 
         questionsList.add(que1)
@@ -25,7 +25,7 @@ object Constants {
             "Brazil",
             "Mexico",
             "Chile",
-            0
+            1
         )
 
         questionsList.add(que2)
@@ -38,7 +38,7 @@ object Constants {
             "Malaysia",
             "Singapore",
             "Thailand",
-            0
+            1
         )
 
         questionsList.add(que3)
@@ -51,7 +51,7 @@ object Constants {
             "Canada",
             "Russia",
             "Portugal",
-            1
+            2
         )
 
         questionsList.add(que4)
@@ -64,7 +64,7 @@ object Constants {
             "North Korea",
             "China",
             "Indonesia",
-            2
+            3
         )
 
         questionsList.add(que5)
@@ -77,7 +77,7 @@ object Constants {
             "Japan",
             "Taiwan",
             "Malaysia",
-            1
+            2
         )
 
         questionsList.add(que6)
@@ -90,7 +90,7 @@ object Constants {
             "USA",
             "Papua New Guinea",
             "Thailand",
-            0
+            1
         )
 
         questionsList.add(que7)
@@ -103,7 +103,7 @@ object Constants {
             "Greece",
             "Sweden",
             "Portugal",
-            3
+            4
         )
 
         questionsList.add(que8)
@@ -116,7 +116,7 @@ object Constants {
             "Malaysia",
             "Singapore",
             "Thailand",
-            2
+            3
         )
 
         questionsList.add(que9)
@@ -129,7 +129,7 @@ object Constants {
             "Malaysia",
             "United Kingdom",
             "USA",
-            3
+            4
         )
 
         questionsList.add(que10)

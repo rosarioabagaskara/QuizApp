@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/drawable/correct_text_background.xml" value="0.1" />
+        <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/drawable/false_text_background.xml" value="0.1" />
         <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/drawable/text_background.xml" value="0.126" />
         <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/drawable/text_background_selected.xml" value="0.1395" />
         <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/layout/activity_quiz_question.xml" value="0.2" />
+        <entry key="..\:/KotlinPractice/QuizApp/app/src/main/res/layout/activity_result.xml" value="0.2" />
       </map>
     </option>
   </component>
